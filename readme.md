@@ -1,10 +1,20 @@
-### Description
+## Description
 
-  Proof of concept 1- An attempt to model a DFA that accepts strings totalling 25 with inputs only with 5, 10 and 25. So, the string "55555" is in the language of the DFA but "101010" is not. Each conditional is meant to describe the transition states of the DFA.
+  ### Proof of concept - DFA
 
-  Proof of concept 2- An attempt to model a PDA that accepts the language On1n for n is greater or equal to 0. So, "000111" is accepted but "10" is not. We use a recursive function to simulate each state that transition into themselves Each conditional represent a transition.
+  lib/dfa.ts
+  An attempt to model a DFA that accepts strings totalling 25 with inputs only with 5, 10 and 25. So, the string "55555" is in the language of the DFA but "101010" is not. Each conditional is meant to describe the transition states of the DFA.
 
-### Run
+  ### Proof of concept - PDA
+
+  lib/pda.ts
+  An attempt to model a PDA that accepts the language On1n for n is greater or equal to 0. So, "000111" is accepted but "10" is not. We use a recursive function to simulate each state that transition into themselves Each conditional represent a transition.
+
+  ### Proof of concept - TM
+
+  lib/tm.ts
+
+## Run
 
 You need node and npm/yarn to run this program.
 

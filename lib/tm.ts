@@ -1,4 +1,4 @@
-const tm = (symbol: number[]): boolean => {
+const tm = (symbol: (number | string)[]): boolean => {
   // TODO
 }
 
