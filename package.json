@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^27.4.5",
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "type": "tsc"
+    "type": "tsc",
+    "test": "jest"
   }
 }
