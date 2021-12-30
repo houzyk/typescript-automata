@@ -2,16 +2,8 @@
 const pda = (symbol: number[]): boolean => {
   if (!symbol.every(c => (c === 0 || c === 1))) return false;
 
-  const stack: (string | number)[] = [];
-  let start: boolean = true;
-
+  const stack: (string | number)[] = ["$"];
   function compute(): boolean {
-    // init stack with bottom symbol
-    if (start) {
-      stack.push("$");
-      start = false;
-    }
-
     if (symbol[0] === 0) {
       stack.push(symbol[0]);
       symbol.shift();
