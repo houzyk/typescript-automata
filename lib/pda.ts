@@ -19,6 +19,6 @@ const pda = (symbol: number[]): boolean => {
   return compute();
 }
 
-// ! NO DOT REMOVE
+// ! DO NOT REMOVE
 module.exports = pda;
 // yarn test pda.test.js
