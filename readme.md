@@ -5,7 +5,9 @@
   Proof of concept 2- An attempt to model a PDA that accepts the language On1n for n is greater or equal to 0. So, "000111" is accepted but "10" is not.
 
 
-# Run
+### Run
+
+You need node and npm/yarn to run this program.
 
 To run the app, start by installing any npm packages
 
