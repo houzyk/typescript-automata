@@ -1,32 +1,34 @@
 // dfa for accepting a total of 25. inputs only take 5, 10 and 20
-const dfa = (str: number[]): boolean => {
-  if (str.length === 0) return false;
-  if (!str.every(c => (c === 5 || c === 20 || c === 10))) return false;
+const dfa = (symbol: number[]): boolean => {
+  if (!symbol.every(c => (c === 5 || c === 20 || c === 10))) return false;
 
-  switch (str[0]) {
+  // rejects epsilon
+  if (symbol.length === 0) return false;
+
+  switch (symbol[0]) {
     case 5:
-      str.shift();
-      switch (str[0]) {
+      symbol.shift();
+      switch (symbol[0]) {
         case 5:
-          str.shift();
-          switch (str[0]) {
+          symbol.shift();
+          switch (symbol[0]) {
             case 5:
-              str.shift();
-              switch (str[0]) {
+              symbol.shift();
+              switch (symbol[0]) {
                 case 5:
-                  str.shift();
-                  if (str[0] === 5) {
-                    str.shift();
-                    return (str.length === 0);
+                  symbol.shift();
+                  if (symbol[0] === 5) {
+                    symbol.shift();
+                    return (symbol.length === 0);
                   } else {
                     return false;
                   }
 
                 case 10:
-                  str.shift();
-                  if (str[0] === 5) {
-                    str.shift();
-                    return (str.length === 0)
+                  symbol.shift();
+                  if (symbol[0] === 5) {
+                    symbol.shift();
+                    return (symbol.length === 0)
                   } else {
                     return false;
                   }
@@ -36,10 +38,10 @@ const dfa = (str: number[]): boolean => {
               }
 
             case 10:
-              str.shift();
-              if (str[0] === 5) {
-                str.shift();
-                return (str.length === 0);
+              symbol.shift();
+              if (symbol[0] === 5) {
+                symbol.shift();
+                return (symbol.length === 0);
               } else {
                 return false;
               }
@@ -49,30 +51,30 @@ const dfa = (str: number[]): boolean => {
           }
 
         case 10:
-          str.shift();
-          switch (str[0]) {
+          symbol.shift();
+          switch (symbol[0]) {
             case 5:
-              str.shift();
-              if (str[0] === 5) {
-                str.shift();
-                return (str.length === 0);
+              symbol.shift();
+              if (symbol[0] === 5) {
+                symbol.shift();
+                return (symbol.length === 0);
               } else {
                 return false;
               }
 
             case 10:
-              str.shift();
-              return (str.length === 0);
+              symbol.shift();
+              return (symbol.length === 0);
 
             default:
               return false;
           }
 
         case 20:
-          str.shift();
-          if (str[0] === 20) {
-            str.shift();
-            return (str.length === 0);
+          symbol.shift();
+          if (symbol[0] === 20) {
+            symbol.shift();
+            return (symbol.length === 0);
           } else {
             return false;
           }
@@ -82,16 +84,16 @@ const dfa = (str: number[]): boolean => {
       }
 
     case 10:
-      str.shift();
-      switch (str[0]) {
+      symbol.shift();
+      switch (symbol[0]) {
         case 5:
-          str.shift();
+          symbol.shift();
 
         case 10:
-          str.shift();
-          if (str[0] === 5) {
-            str.shift();
-            return (str.length === 0);
+          symbol.shift();
+          if (symbol[0] === 5) {
+            symbol.shift();
+            return (symbol.length === 0);
           } else {
             return false;
           }
@@ -101,10 +103,10 @@ const dfa = (str: number[]): boolean => {
       }
 
     case 20:
-      str.shift();
-      if (str[0] === 5) {
-        str.shift();
-        return (str.length === 0);
+      symbol.shift();
+      if (symbol[0] === 5) {
+        symbol.shift();
+        return (symbol.length === 0);
       } else {
         return false;
       }
