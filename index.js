@@ -1,7 +1,82 @@
 // dfa for accepting a total of 25. inputs only take 5, 10 and 20
 var dfa = function (str) {
-    if (!str.every(function (char) { return (char === 5 || char === 20 || char === 10); }))
+    if (str.length === 0)
         return false;
-    return false;
+    if (!str.every(function (c) { return (c === 5 || c === 20 || c === 10); }))
+        return false;
+    switch (str[0]) {
+        // TODO
+        case 5:
+            str.shift();
+            switch (str[0]) {
+                case 5:
+                    str.shift();
+                    switch (str[0]) {
+                        case 5:
+                            str.shift();
+                        case 10:
+                            str.shift();
+                        default:
+                            return false;
+                    }
+                case 10:
+                    str.shift();
+                    switch (str[0]) {
+                        case 5:
+                            str.shift();
+                            if (str[0] === 5) {
+                                str.shift();
+                                return (str.length === 0);
+                            }
+                            else {
+                                return false;
+                            }
+                        case 10:
+                            str.shift();
+                            return (str.length === 0);
+                        default:
+                            return false;
+                    }
+                case 20:
+                    str.shift();
+                    if (str[0] === 20) {
+                        str.shift();
+                        return (str.length === 0);
+                    }
+                    else {
+                        return false;
+                    }
+                default:
+                    return false;
+            }
+        case 10:
+            str.shift();
+            switch (str[0]) {
+                case 5:
+                    str.shift();
+                case 10:
+                    str.shift();
+                    if (str[0] === 5) {
+                        str.shift();
+                        return (str.length === 0);
+                    }
+                    else {
+                        return false;
+                    }
+                default:
+                    return false;
+            }
+        case 20:
+            str.shift();
+            if (str[0] === 5) {
+                str.shift();
+                return (str.length === 0);
+            }
+            else {
+                return false;
+            }
+        default:
+            return false;
+    }
 };
 module.exports = dfa;
