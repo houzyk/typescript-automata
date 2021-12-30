@@ -1,4 +1,4 @@
-const dfa = require('./index.js');
+const dfa = require('./dfa.js');
 
 describe("DFA Test Suite", () => {
   // * accepted strings
