@@ -37,4 +37,18 @@ describe("DFA Test Suite", () => {
     expect(dfa[5, 10, 10, 10, 20, 51, 5]).toBeFalsy();
     expect(dfa[5, 20, 203, 10, 10, 53, 20]).toBeFalsy();
   })
+
+    // * handle excess
+  it("should reject the excess string 5, 5, 10, 5, 5", () => {
+    expect(dfa([5, 5, 10, 5, 5])).toBeFalsy();
+  });
+  it("should reject the excess string 5, 5, 5, 5, 5, 5", () => {
+    expect(dfa([5, 5, 5, 5, 5, 5])).toBeFalsy();
+  });
+  it("should reject the excess string 10, 10, 5, 5", () => {
+    expect(dfa([10, 10, 5, 5])).toBeFalsy();
+  });
+  it("should reject the excess string 20, 5, 10", () => {
+    expect(dfa([20, 5, 10])).toBeFalsy();
+  });
 })
