@@ -116,4 +116,6 @@ const dfa = (symbol: number[]): boolean => {
   }
 }
 
+// ! NO DOT REMOVE
 module.exports = dfa;
+// yarn test dfa.test.js
