@@ -6,10 +6,22 @@ const pda = (symbol: number[]): boolean => {
   let start: boolean = true;
 
   function compute(): boolean {
+    // init stack with bottom symbol
     if (start) {
       stack.push("$");
       start = false;
     }
+
+    if (symbol[0] === 0) {
+      stack.push(symbol[0]);
+      symbol.shift();
+      compute();
+    } else if (symbol[0] === 1 && stack[stack.length - 1] === 0) {
+      stack.pop();
+      symbol.shift();
+      compute();
+    }
+    return (symbol.length === 0 && stack.length === 1 && stack.every(c => c === "$"));
   }
 
   return compute();
