@@ -16,6 +16,8 @@
 
   lib/tm.ts
 
+  An attempt to model a TM that accepts the language 0n1n2n for n is greater or equal to 1. So, "001122" is accepted but "0121" is not.
+
 ## Run
 
 You need node and npm/yarn to run this program.
