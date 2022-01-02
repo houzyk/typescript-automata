@@ -10,7 +10,7 @@
 
   lib/pda.ts
 
-  An attempt to model a PDA that accepts the language On1n for n is greater or equal to 0. So, "000111" is accepted but "10" is not. We use a recursive function to simulate each state that transition into themselves Each conditional represent a transition.
+  An attempt to model a PDA that accepts the language On1n for n is greater or equal to 0. So, "000111" is accepted but "10" is not. We use a recursive function to simulate each state that transition into themselves. Each conditional represent a transition.
 
   ### Proof of concept - TM
 
