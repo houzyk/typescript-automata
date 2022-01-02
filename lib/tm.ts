@@ -58,11 +58,41 @@ const tm = (symbol: (number | string)[]): boolean => {
         compute();
 
       case "Q2":
-        // todo
+        if (symbol[selectedSymbolIndex] === 1 || symbol[selectedSymbolIndex] === "Z") {
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+        } else if (symbol[selectedSymbolIndex] === 2) {
+          // header write
+          symbol[selectedSymbolIndex] = "Z";
+          // header shift
+          selectedSymbolIndex -= 1;
+          handleTapeEnd(selectedSymbolIndex);
+          // state transition
+          headState = states[3];
+        } else {
+          return false;
+        }
         compute();
 
       case "Q3":
-        // todo
+        const q3Condition: boolean = symbol[selectedSymbolIndex] === 0 ||
+                                      symbol[selectedSymbolIndex] === 1 ||
+                                      symbol[selectedSymbolIndex] === "Y" ||
+                                      symbol[selectedSymbolIndex] === "Z";
+        if (q3Condition) {
+          // header shift
+          selectedSymbolIndex -= 1;
+          handleTapeEnd(selectedSymbolIndex);
+        } else if (symbol[selectedSymbolIndex] === "X") {
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+          // state transition
+          headState = states[0];
+        } else {
+          return false;
+        }
         compute();
 
       case "Q4":
