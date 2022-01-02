@@ -3,17 +3,34 @@ const tm = (symbol: (number | string)[]): boolean => {
   if (!symbol.every(c => (c === 0 || c === 1 || c === 2))) return false;
   if (symbol.length === 0) return false;
 
-  let selectedSymbol: number | string = symbol[0];
+  let selectedSymbolIndex: number = 0;
+  const blank: string = "$";
 
   const states: string[] = ["Q0", "Q1", "Q2", "Q3", "Q4", "QA"];
   let headState: string = states[0];
 
-  const blank: string = "$";
+  const handleTapeEnd = (index: number): void => {
+    if (symbol[index] === undefined) symbol.push(blank);
+  }
 
   function compute(): boolean {
     switch (headState) {
       case "Q0":
-        // todo
+        if (symbol[selectedSymbolIndex] === 0) {
+          // header write
+          symbol[selectedSymbolIndex] = "X";
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+          // state transition
+          headState = states[1];
+        } else if (symbol[selectedSymbolIndex] === "Y") {
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+          // state transition
+          headState = states[4];
+        }
         compute();
 
       case "Q1":
