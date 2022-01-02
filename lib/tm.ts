@@ -6,6 +6,10 @@ const tm = (symbol: (number | string)[]): boolean => {
   let selectedSymbolIndex: number = 0;
   const blank: string = "$";
 
+  // init input
+  symbol.unshift(blank);
+  symbol.push(blank);
+
   const states: string[] = ["Q0", "Q1", "Q2", "Q3", "Q4", "QA"];
   let headState: string = states[0];
 
@@ -30,11 +34,27 @@ const tm = (symbol: (number | string)[]): boolean => {
           handleTapeEnd(selectedSymbolIndex);
           // state transition
           headState = states[4];
+        } else {
+          return false;
         }
         compute();
 
       case "Q1":
-        // todo
+        if (symbol[selectedSymbolIndex] === 0 || symbol[selectedSymbolIndex] === "Y") {
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+        } else if (symbol[selectedSymbolIndex] === 1) {
+          // header write
+          symbol[selectedSymbolIndex] = "Y";
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+          // state transition
+          headState = states[2];
+        } else {
+          return false;
+        }
         compute();
 
       case "Q2":
