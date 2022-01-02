@@ -96,7 +96,18 @@ const tm = (symbol: (number | string)[]): boolean => {
         compute();
 
       case "Q4":
-        // todo
+        if (symbol[selectedSymbolIndex] === "Y" || symbol[selectedSymbolIndex] === "Z") {
+          // header shift
+          selectedSymbolIndex += 1;
+          handleTapeEnd(selectedSymbolIndex);
+        } else if (symbol[selectedSymbolIndex] === blank) {
+          // header shift
+          selectedSymbolIndex -= 1;
+          handleTapeEnd(selectedSymbolIndex);
+          headState = states[5];
+        } else {
+          return false;
+        }
         compute();
 
       case "QA":
