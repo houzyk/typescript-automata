@@ -3,7 +3,7 @@ const tm = (symbol: (number | string)[]): boolean => {
   if (!symbol.every(c => (c === 0 || c === 1 || c === 2))) return false;
   if (symbol.length === 0) return false;
 
-  let selectedSymbolIndex: number = 0;
+  let selectedSymbolIndex: number = 1;
   const blank: string = "$";
 
   // init input
@@ -19,7 +19,7 @@ const tm = (symbol: (number | string)[]): boolean => {
 
   function compute(): boolean {
     switch (headState) {
-      case "Q0":
+      case states[0]:
         if (symbol[selectedSymbolIndex] === 0) {
           // header write
           symbol[selectedSymbolIndex] = "X";
@@ -39,7 +39,7 @@ const tm = (symbol: (number | string)[]): boolean => {
         }
         compute();
 
-      case "Q1":
+      case states[1]:
         if (symbol[selectedSymbolIndex] === 0 || symbol[selectedSymbolIndex] === "Y") {
           // header shift
           selectedSymbolIndex += 1;
@@ -57,7 +57,7 @@ const tm = (symbol: (number | string)[]): boolean => {
         }
         compute();
 
-      case "Q2":
+      case states[2]:
         if (symbol[selectedSymbolIndex] === 1 || symbol[selectedSymbolIndex] === "Z") {
           // header shift
           selectedSymbolIndex += 1;
@@ -75,7 +75,7 @@ const tm = (symbol: (number | string)[]): boolean => {
         }
         compute();
 
-      case "Q3":
+      case states[3]:
         const q3Condition: boolean = symbol[selectedSymbolIndex] === 0 ||
                                       symbol[selectedSymbolIndex] === 1 ||
                                       symbol[selectedSymbolIndex] === "Y" ||
@@ -95,7 +95,7 @@ const tm = (symbol: (number | string)[]): boolean => {
         }
         compute();
 
-      case "Q4":
+      case states[4]:
         if (symbol[selectedSymbolIndex] === "Y" || symbol[selectedSymbolIndex] === "Z") {
           // header shift
           selectedSymbolIndex += 1;
@@ -110,7 +110,7 @@ const tm = (symbol: (number | string)[]): boolean => {
         }
         compute();
 
-      case "QA":
+      case states[5]:
         return true;
 
       default:
